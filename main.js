@@ -16,9 +16,9 @@ function main(canvas, ctx) {
   let m = new Date().getMinutes();
   let s = new Date().getSeconds();
 
-  minutes(m, canvas, ctx)
   seconds(s, canvas, ctx)
-  hours(h % 12, canvas, ctx)
+  minutes(m, s, canvas, ctx)
+  hours(h % 12, m, canvas, ctx)
 }
 
 
@@ -27,13 +27,13 @@ function seconds(s, canvas, ctx) {
   draw(ang, canvas, ctx, 2, 225, "red")
 }
 
-function minutes(m, canvas, ctx) {
-  let ang = 6 * (m-30) * (Math.PI/180)
+function minutes(m, s, canvas, ctx) {
+  let ang = (6 * (m-30 + s/60)) * (Math.PI/180)
   draw(ang, canvas, ctx, 3, 190, "white")
   }
 
-function hours(h, canvas, ctx) {
-  let ang = 30 * (h-6) * (Math.PI/180)
+function hours(h, m, canvas, ctx) {
+  let ang = 30 * (h-6 + m/60) * (Math.PI/180)
   draw(ang, canvas, ctx, 4, 125, "white")
 }
 
